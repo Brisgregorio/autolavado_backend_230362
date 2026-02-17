@@ -14,7 +14,7 @@ class User(Base):
     direccion = Column(String(255))
     correo_electronico = Column(String(100))
     numero_telefono = Column(String(20))
-    contrasena=Column(String(100))
+    contrasena=Column(String(255))
     estatus= Column(Boolean, default=True)
     fecha_registro= Column(DateTime)
     fecha_actualizacion=Column(DateTime)
