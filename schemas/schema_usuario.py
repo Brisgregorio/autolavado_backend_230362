@@ -1,14 +1,13 @@
 '''
-Docstring for schemas.schema_user
+Docstring for schemas.schema_usuario
 '''
-
-from pydantic import BaseModel
-from datetime import datetime
 from typing import Optional
+from datetime import datetime
+from pydantic import BaseModel
 
-class UserBase(BaseModel):
-    '''Esquema base para los usuarios'''
-    Rol_id: int
+class UsuarioBase(BaseModel):
+    '''Clase para modelar los campos de tabla Usuarios'''
+    rol_Id: int
     nombre: str
     primer_apellido: str
     segundo_apellido: str
@@ -16,25 +15,26 @@ class UserBase(BaseModel):
     correo_electronico: str
     numero_telefono: str
     contrasena: str
-    estatus: bool = True
+    estado: bool
     fecha_registro: datetime
     fecha_actualizacion: datetime
-
-class UserCreate(UserBase):
-    '''Esquema para crear un nuevo usuario'''
+# pylint: disable=too-few-public-methods, unnecessary-pass
+class UsuarioCreate(UsuarioBase):
+    '''Clase para crear un USuario basado en la tabla Usuario'''
     pass
-class UserUpdate(UserBase):
-    '''Esquema para actualizar un usuario existente'''
+class UsuarioUpdate(UsuarioBase):
+    '''Clase para actualizar un Usuario basado en la tabla Usuario'''
     pass
-class User(UserBase):
-    '''Esquema para representar un usuario en la base de datos'''
-    id: int
 
+class Usuario(UsuarioBase):
+    '''Clase para realizar operaciones por ID en tabla Usuario'''
+    Id: int
     class Config:
-        orm_mode = True
+        '''Utilizar el orm para ejecutar las funcionalidades'''
+        orm_mode =True
 
-class UserLogin(BaseModel):
-    '''Clase para realizar el login por numero o correo'''
-    numero_telefono :Optional [str]= None
-    correo_electronico : Optional[str] = None
+class UsuarioLogin(BaseModel):
+    '''Clase para realizar login por numero de telefono o correo'''
+    numero_telefono: Optional[str] = None
+    correo_electronico: Optional[str] = None
     contrasena: str

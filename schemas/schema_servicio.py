@@ -1,30 +1,23 @@
-'''
-Docstring for schemas.schema_ervices
-'''
-
-from pydantic import BaseModel
+'''Docstring for schemas.schema_servicio'''
 from datetime import datetime
+from pydantic import BaseModel
 
 class ServicioBase(BaseModel):
-    '''Esquema para Servicio'''
     nombre: str
     descripcion: str
     costo: float
-    duracion: int
+    duracion_minutos: int
     estado: bool
-    fecha_registro:datetime
-    fecha_actualizacion:datetime
-
+    fecha_registro: datetime
+    fecha_actualizacion: datetime
 
 class ServicioCreate(ServicioBase):
-    '''Esquema para crear un nuevo servicio'''
     pass
-class ServicioUpdate(ServicioBase):
-    '''Esquema para actualizar un servicio existente'''
-    pass
-class Servicio(ServicioBase):
-    '''Esquema para representar un servicio en la base de datos'''
-    id: int
 
+class ServicioUpdate(ServicioBase):
+    pass
+
+class Servicio(ServicioBase):
+    Id: int
     class Config:
-        orm_mode = True
+        from_attributes = True
